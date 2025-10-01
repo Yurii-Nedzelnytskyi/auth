@@ -23,21 +23,38 @@ function handleSubmit() {
     return false;
   }
 
+  if (user.password.length < 7) {
+    alert('Password must consist of seven characters long');
+    return false;
+  }
+
   register(user);
   saveUsers();
 }
 
 function isOccupied(login) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].login === login) {
+  // for (let i = 0; i < users.length; i++) {
+  //   if (users[i].login === login) {
+  //     return true;
+  //   }
+  // } 
+  // for (const i in users) {
+  //   if (users[i].login === login) {
+  //     return true;
+  //   }
+  // } 
+  for (const u of users) {
+    if (u.login === login) {
       return true;
     }
   } 
   return false;
 }
 
-function register(user) {
-  users.push(user);
+// 
+
+function register({login, password}) {
+  users.push({login, password});
 }
 
 function saveUsers() {
